@@ -1,0 +1,28 @@
+services:
+  # PostgreSQL database for all ledger data, users, and outbox events
+  postgres:
+    image: postgres:16
+    container_name: mint-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: mint
+      POSTGRES_USER: mint
+      POSTGRES_PASSWORD: mintpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # Redis for token storage / distributed rate limiting
+  redis:
+    image: redis:7-alpine
+    container_name: mint-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:

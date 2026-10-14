@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mint
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mint}
+    username: ${DB_USER:mint}
+    password: ${DB_PASSWORD:mintpassword}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    # Flyway manages database tables. We set ddl-auto to validate to prevent Hibernate from altering schemas.
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+# Application-specific configuration for JWT authentication
+mint:
+  jwt:
+    # A 256-bit secret key used to cryptographically sign and verify JWT tokens
+    secret: ${JWT_SECRET:super-secret-jwt-key-that-is-at-least-32-bytes-long-for-mint-app}
+    # Access token lifespan: 15 minutes (900,000 ms)
+    expiration-ms: ${JWT_EXPIRATION_MS:900000}
+    # Refresh token lifespan: 7 days (604,800,000 ms)
+    refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}
