@@ -32,6 +32,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    // JWT contains "Bearer ****" -> encoded string, we can take substring to extract
+
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
@@ -47,6 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String email = claims.getSubject();
             String role = claims.get("role", String.class);
 
+            //SimpleGrantedAuthority stores permissions / roles of an Auth object
             List<SimpleGrantedAuthority> authorities = role != null
                     ? Collections.singletonList(new SimpleGrantedAuthority(role))
                     : Collections.emptyList();
