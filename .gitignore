@@ -34,3 +34,8 @@ out/
 ### Environment & secrets ###
 .env
 *.log
+
+### Private notes & breakdowns ###
+mint_project_breakdown.md
+*_breakdown.md
+*.bak

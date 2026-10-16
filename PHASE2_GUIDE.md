@@ -45,14 +45,16 @@ Clients provide an `Idempotency-Key: <UUID>` header with each transfer request.
 
 ### Prerequisites
 1. Start PostgreSQL & Redis:
-   ```powershell
+   ```bash
    docker compose up -d
    ```
 2. Start the application:
-   ```powershell
-   $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot"
-   $env:Path = "$env:JAVA_HOME\bin;" + $env:Path
+   ```bash
+   # On Windows:
    .\mvnw.cmd spring-boot:run
+
+   # On Linux / macOS:
+   ./mvnw spring-boot:run
    ```
 
 ---
@@ -131,8 +133,10 @@ curl -X GET "http://localhost:8080/api/v1/accounts/<ACCOUNT_UUID>/entries?page=0
 ## 4. Running Automated Tests
 
 Run the full test suite anytime:
-```powershell
-$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot"
-$env:Path = "$env:JAVA_HOME\bin;" + $env:Path
+```bash
+# On Windows:
 .\mvnw.cmd test
+
+# On Linux / macOS:
+./mvnw test
 ```

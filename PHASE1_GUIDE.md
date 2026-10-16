@@ -35,21 +35,22 @@ This guide explains how Phase 1 works, how each piece connects, and how to test 
 ## 2. How to Run Locally
 
 ### Prerequisites
-- Java 21 (installed at `C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot`)
+- Java 21+ (`java -version`)
 - Docker Desktop (for Postgres & Redis)
 
 ### Step 1: Start PostgreSQL and Redis
-Open PowerShell and start the database containers:
-```powershell
+Start the database and cache containers:
+```bash
 docker compose up -d
 ```
 
-### Step 2: Set JAVA_HOME and Run the App
-```powershell
-$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot"
-$env:Path = "$env:JAVA_HOME\bin;" + $env:Path
-
+### Step 2: Run the Application
+```bash
+# On Windows (PowerShell / CMD):
 .\mvnw.cmd spring-boot:run
+
+# On Linux / macOS:
+./mvnw spring-boot:run
 ```
 
 ---
@@ -104,9 +105,10 @@ curl -X POST http://localhost:8080/api/v1/auth/refresh \
 
 ## 4. Running the Tests
 To run the automated test suite anytime:
-```powershell
-$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot"
-$env:Path = "$env:JAVA_HOME\bin;" + $env:Path
-
+```bash
+# On Windows:
 .\mvnw.cmd test
+
+# On Linux / macOS:
+./mvnw test
 ```
