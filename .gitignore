@@ -39,3 +39,7 @@ out/
 mint_project_breakdown.md
 *_breakdown.md
 *.bak
+
+### Bundles & Context packages ###
+frontend-context/
+*.zip
