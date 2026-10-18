@@ -32,6 +32,10 @@
 set -euf
 [ "${MVNW_VERBOSE-}" != debug ] || set -x
 
+if [ -d "/c/Program Files/Eclipse Adoptium/jdk-21.0.8.9-hotspot" ]; then
+  JAVA_HOME="/c/Program Files/Eclipse Adoptium/jdk-21.0.8.9-hotspot"
+fi
+
 # OS specific support.
 native_path() { printf %s\\n "$1"; }
 case "$(uname)" in

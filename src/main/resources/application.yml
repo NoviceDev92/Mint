@@ -6,7 +6,7 @@ spring:
     name: mint
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mint}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mint}?options=-c%20timezone=UTC
     username: ${DB_USER:mint}
     password: ${DB_PASSWORD:mintpassword}
     driver-class-name: org.postgresql.Driver

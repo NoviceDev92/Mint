@@ -1,7 +1,10 @@
 package com.mint;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.TimeZone;
 
 /**
  * Entry point for the Mint Application.
@@ -10,7 +13,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MintApplication {
 
+    @PostConstruct
+    void init() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
+
     public static void main(String[] args) {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         SpringApplication.run(MintApplication.class, args);
     }
 }

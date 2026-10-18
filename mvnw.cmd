@@ -27,6 +27,15 @@
 @REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
 @REM ----------------------------------------------------------------------------
 
+@IF EXIST "C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot\bin\java.exe" (
+  @SET "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot"
+) ELSE (
+  @FOR /F "tokens=2* delims= " %%A IN ('REG QUERY "HKCU\Environment" /v JAVA_HOME 2^>nul') DO @SET "JAVA_HOME=%%B"
+)
+@IF NOT "%JAVA_HOME%"=="" (
+  @SET "PATH=%JAVA_HOME%\bin;%PATH%"
+)
+@CD /D "%~sdp0"
 @IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
 @SET __MVNW_CMD__=
 @SET __MVNW_ERROR__=
